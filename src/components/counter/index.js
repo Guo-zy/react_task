@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import store from "../../store/index"
+import store from "../../store/index";
+import {INCREMENT , DECREMENT } from "../../store/actionTypes";
 
 class Counter extends Component {
   constructor(props) {
@@ -12,7 +13,7 @@ class Counter extends Component {
   subCount = () => {
     this.setState((preState) => ({ value: preState.value - 1 }));
     const action = {
-      type: 'DECREMENT',
+      type: DECREMENT,
       value: 1
     }
     store.dispatch(action);
@@ -22,7 +23,7 @@ class Counter extends Component {
   addCount = () => {
     this.setState((preState) => ({ value: preState.value + 1 }));
     const action = {
-      type: 'INCREMENT',
+      type: INCREMENT,
       value: 1
     }
     store.dispatch(action);
