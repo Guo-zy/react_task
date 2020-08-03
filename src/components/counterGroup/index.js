@@ -5,45 +5,32 @@ import store from "../../store/index"
 class CounterGroup extends Component {
   constructor(props) {
     super(props);
-    this.state = store.getState();
-    store.subscribe(this.handleStoreChange);
+    this.state = {
+      initArray: [...Array(0).keys()],
+      totalValue: 0
+    }
   }
 
   getInitArray = () => {
     return this.state.initArray.map((key) => (
       <Counter
         key={key}
-        onChangeSize={this.state.size}
+        getTotalValue={this.getTotalValue}
       />
     ));
   };
 
-  onAdd = () => {
-    const action = {
-      type: 'INCREMENT',
-      value: 1
-    }
-    store.dispatch(action)
-  };
-
-  onSub = () => {
-    const action = {
-      type: 'DECREMENT',
-      value: 1
-    }
-    store.dispatch(action)
-  };
-
   onChangeSize = (e) => {
-    const action = {
-      type: 'change_group_size',
-      value: e.target.value
-    }
-    store.dispatch(action)
+    this.setState({
+      initArray: [...Array(e.target.value ? parseInt(e.target.value) : 0).keys()]
+    })
+
   };
 
-  handleStoreChange = () => {
-    this.setState(store.getState);
+  getTotalValue = () => {
+    this.setState({
+      totalValue: store.getState().totalValue
+    })
   }
 
   render() {

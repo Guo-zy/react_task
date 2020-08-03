@@ -16,6 +16,7 @@ class Counter extends Component {
       value: 1
     }
     store.dispatch(action);
+    this.props.getTotalValue();
   };
 
   addCount = () => {
@@ -25,14 +26,16 @@ class Counter extends Component {
       value: 1
     }
     store.dispatch(action);
+    this.props.getTotalValue();
   };
 
-  componentWillUnmount  () {
+  componentWillUnmount() {
     const action = {
       type: 'DECREMENT',
       value: this.state.value
     }
     store.dispatch(action);
+    this.props.getTotalValue();
   }
 
   render() {
