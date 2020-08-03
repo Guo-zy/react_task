@@ -1,0 +1,10 @@
+{
+    "remote.extensionKind": {
+        "pub.name": [
+            "ui"
+        ]
+    },
+    "files.associations" : {
+        "*.js": "javascriptreact"
+    }
+}
