@@ -13,8 +13,6 @@ class CounterGroup extends Component {
     return this.state.initArray.map((key) => (
       <Counter
         key={key}
-        onAdd={this.onAdd}
-        onSub={this.onSub}
         onChangeSize={this.state.size}
       />
     ));

@@ -1,32 +1,38 @@
 import React, { Component } from "react";
+import store from "../../store/index"
 
 class Counter extends Component {
   constructor(props) {
     super(props);
     this.state = {
       value: 0,
-      size: this.props.onChangeSize,
     };
   }
 
   subCount = () => {
     this.setState((preState) => ({ value: preState.value - 1 }));
-    this.props.onSub();
+    const action = {
+      type: 'DECREMENT',
+      value: 1
+    }
+    store.dispatch(action);
   };
 
   addCount = () => {
     this.setState((preState) => ({ value: preState.value + 1 }));
-    this.props.onAdd();
+    const action = {
+      type: 'INCREMENT',
+      value: 1
+    }
+    store.dispatch(action);
   };
 
-  static getDerivedStateFromProps(props, state) {
-    if (props.onChangeSize !== state.size) {
-      return {
-        value: 0,
-        size: props.onChangeSize,
-      };
+  componentWillUnmount  () {
+    const action = {
+      type: 'DECREMENT',
+      value: this.state.value
     }
-    return null;
+    store.dispatch(action);
   }
 
   render() {
