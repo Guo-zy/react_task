@@ -6,7 +6,7 @@ import {
   subOneAction,
   subValueAction,
 } from "../../store/actionCreators";
-
+import PropTypes from "prop-types";
 
 class CounterGroup extends Component {
   constructor(props) {
@@ -17,7 +17,14 @@ class CounterGroup extends Component {
   }
 
   getInitArray = () => {
-    return this.state.initArray.map((key) => <Counter key={key} />);
+    return this.state.initArray.map((key) => (
+      <Counter
+        key={key}
+        addOneAction={this.props.addOneAction}
+        subOneAction={this.props.subOneAction}
+        subValueAction={this.props.subValueAction}
+      />
+    ));
   };
 
   onChangeSize = (e) => {
@@ -43,13 +50,22 @@ class CounterGroup extends Component {
   }
 }
 
-const mapStateToProps = (state) => state.counter.totalValue;
-// const { totalValue } = state.counter;
-// return { totalValue };
+CounterGroup.propTypes = {
+  totalValue: PropTypes.number.isRequired,
+  addOneAction: PropTypes.func.isRequired,
+  subOneAction: PropTypes.func.isRequired,
+  subValueAction: PropTypes.func.isRequired,
+};
 
-const mapDispatchToProps = (dispatch) => ({
-  addOneAction: () => dispatch(addOneAction()),
-  subOneAction: () => dispatch(subOneAction()),
-  subValueAction: (value) => dispatch(subValueAction(value)),
-});
+const mapStateToProps = (state) => {
+  const { totalValue } = state.counter;
+  return { totalValue };
+};
+
+
+const mapDispatchToProps = {
+  addOneAction,
+  subOneAction,
+  subValueAction,
+};
 export default connect(mapStateToProps, mapDispatchToProps)(CounterGroup);

@@ -1,16 +1,14 @@
 import {INCREMENT , DECREMENT } from "./actionTypes";
+import {createReducer} from "@reduxjs/toolkit"
+
 const defaultState = {
     totalValue: 0,
 }
 
-export default (state = defaultState, action) => {
-    switch (action.type) {
-        case INCREMENT:
-            return { totalValue: state.totalValue + action.value }
-        case DECREMENT:
-            return { totalValue: state.totalValue - action.value }
-        default:
-            return state
-    }
+export default createReducer(defaultState , {
+    [INCREMENT] : (state , action) => ({totalValue : state.totalValue + action.payload}),
+    [DECREMENT] : (state , action) => ({totalValue : state.totalValue - action.payload}),
+})
 
-}
+
+

@@ -1,13 +1,14 @@
 import { INCREMENT, DECREMENT } from "./actionTypes";
-export const addOneAction = () => ({
-    type: INCREMENT,
-    value: 1
-})
-export const subOneAction = () => ({
-    type: DECREMENT,
-    value: 1
-})
-export const subValueAction = value => ({
-    type: DECREMENT,
-    value
-})
+import { createAction } from "@reduxjs/toolkit";
+
+export const addOneAction = createAction(INCREMENT, () => ({
+  payload: 1,
+}));
+
+export const subOneAction = createAction(DECREMENT, () => ({
+  payload: 1,
+}));
+
+export const subValueAction = createAction(DECREMENT, (number) => ({
+  payload: number,
+}));

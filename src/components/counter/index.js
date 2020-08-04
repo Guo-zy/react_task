@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 
 class Counter extends Component {
   constructor(props) {
@@ -16,7 +15,7 @@ class Counter extends Component {
 
   addCount = () => {
     this.setState((preState) => ({ value: preState.value + 1 }));
-    this.props.addOneAction();
+    this.props.addOneAction();        
   };
 
   componentWillUnmount() {
