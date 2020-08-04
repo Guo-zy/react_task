@@ -3,7 +3,6 @@ import Counter from "../counter/index";
 import { connect } from "react-redux";
 import {
   addOneAction,
-  subOneAction,
   subValueAction,
 } from "../../store/actionCreators";
 import PropTypes from "prop-types";
@@ -21,7 +20,6 @@ class CounterGroup extends Component {
       <Counter
         key={key}
         addOneAction={this.props.addOneAction}
-        subOneAction={this.props.subOneAction}
         subValueAction={this.props.subValueAction}
       />
     ));
@@ -53,9 +51,9 @@ class CounterGroup extends Component {
 CounterGroup.propTypes = {
   totalValue: PropTypes.number.isRequired,
   addOneAction: PropTypes.func.isRequired,
-  subOneAction: PropTypes.func.isRequired,
   subValueAction: PropTypes.func.isRequired,
 };
+
 
 const mapStateToProps = (state) => {
   const { totalValue } = state.counter;
@@ -65,7 +63,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   addOneAction,
-  subOneAction,
   subValueAction,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(CounterGroup);

@@ -8,14 +8,15 @@ class Counter extends Component {
     };
   }
 
+
   subCount = () => {
     this.setState((preState) => ({ value: preState.value - 1 }));
-    this.props.subOneAction();
+    this.props.subValueAction(1);
   };
 
   addCount = () => {
     this.setState((preState) => ({ value: preState.value + 1 }));
-    this.props.addOneAction();        
+    this.props.addOneAction(1);        
   };
 
   componentWillUnmount() {
@@ -35,5 +36,8 @@ class Counter extends Component {
   }
 }
 
+Counter.defaultProps = {
+  value : 0
+}
 
 export default Counter;
