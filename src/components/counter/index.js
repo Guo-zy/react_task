@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import store from "../../store/index";
-import { addOneAction, subOneAction, subValueAction } from "../../store/actionCreators"
+import { connect } from "react-redux";
 
 class Counter extends Component {
   constructor(props) {
@@ -12,22 +11,16 @@ class Counter extends Component {
 
   subCount = () => {
     this.setState((preState) => ({ value: preState.value - 1 }));
-    const action = subOneAction();
-    store.dispatch(action);
-    this.props.getTotalValue();
+    this.props.subOneAction();
   };
 
   addCount = () => {
     this.setState((preState) => ({ value: preState.value + 1 }));
-    const action = addOneAction();
-    store.dispatch(action);
-    this.props.getTotalValue();
+    this.props.addOneAction();
   };
 
   componentWillUnmount() {
-    const action = subValueAction(this.state.value);
-    store.dispatch(action);
-    this.props.getTotalValue();
+    this.props.subValueAction(this.state.value);
   }
 
   render() {
@@ -42,5 +35,6 @@ class Counter extends Component {
     );
   }
 }
+
 
 export default Counter;
